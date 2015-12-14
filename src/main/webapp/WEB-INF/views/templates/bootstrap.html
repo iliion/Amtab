@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Creative - Start Bootstrap Theme</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="/resources/core/css/bootstrap.min.css"
+    th:href="@{/resources/core/css/bootstrap.min.css}" type="text/css">
+
+<!-- Custom Fonts -->
+<link
+    href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+<link
+    href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+    rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/resources/core/font-awesome/css/font-awesome.min.css"
+    th:href="@{/resources/core/font-awesome/css/font-awesome.min.css}" type="text/css">
+
+<!-- Plugin CSS -->
+<link rel="stylesheet" href="/resources/core/css/animate.min.css"
+    th:href="@{/resources/core/css/animate.min.css}" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/resources/core/css/creative.css"
+    th:href="@{/resources/core/css/creative.css}" type="text/css">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"
+    th:href="@{http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css}" type="text/css" />
+
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!--             Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Start AMTAB</a>
+            </div>
+
+            <!--             Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll" href="#about">Mappa</a></li>
+                    <li><a class="page-scroll" href="#services">Linee</a></li>
+                    <li><a class="page-scroll" href="#portfolio">Orari</a></li>
+                    <li><a class="page-scroll" href="#contact">Contatti</a></li>
+                </ul>
+            </div>
+            <!--             /.navbar-collapse -->
+        </div>
+        <!--         /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>Your Favorite Source of Free Bootstrap Themes</h1>
+                <hr>
+                <p>Start Bootstrap can help you build better websites using the Bootstrap CSS
+                    framework! Just download your template and start going, no strings attached!</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Non sai dove andare?</h2>
+                    <hr class="light">
+                    <p class="text-faded">All of the templates and themes on Start Bootstrap are
+                        open source, free to download, and easy to use. No strings attached!</p>
+                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
+
+                    <div id="map" style="width:900px; height: 500px;"></div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Lista di linee che operano nella citta di Bari</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <table class="table table-bordered">
+                        <!-- On rows -->
+                        <tr class="active">
+                            <th class="text-center">Numero</th>
+                            <th class="text-center">Linea</th>
+                            <th class="text-center">Mappa</th>
+                        </tr>
+                        <!-- On cells (`td` or `th`) -->
+                        <tr th:each="item : ${list}">
+                            <td class="success" th:text="${{item.idLine}}"></td>
+                            <td th:text="${{item.lineDescription}}"></td>
+                            <td><a th:href="@{/amtab/line/__${item.idLine}__}">Vai</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
+                        <h3>Sturdy Templates</h3>
+                        <p class="text-muted">Our templates are updated regularly so they don't
+                            break.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary"
+                            data-wow-delay=".1s"></i>
+                        <h3>Ready to Ship</h3>
+                        <p class="text-muted">You can use this theme as is, or you can make
+                            changes!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary"
+                            data-wow-delay=".2s"></i>
+                        <h3>Up to Date</h3>
+                        <p class="text-muted">We update dependencies to keep things fresh.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <h3>Made with Love</h3>
+                        <p class="text-muted">You have to make your websites with love these
+                            days!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box"> <img
+                        src="/resources/core/img/portfolio/1.jpg"
+                        th:src="@{/resources/core/img/portfolio/1.jpg}" class="img-responsive"
+                        alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">Category</div>
+                                <div class="project-name">Project Name</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box"> <img
+                        src="/resources/core/img/portfolio/2.jpg"
+                        th:src="@{/resources/core/img/portfolio/2.jpg}" class="img-responsive"
+                        alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">Category</div>
+                                <div class="project-name">Project Name</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box"> <img
+                        src="/resources/core/img/portfolio/3.jpg"
+                        th:src="@{/resources/core/img/portfolio/3.jpg}" class="img-responsive"
+                        alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">Category</div>
+                                <div class="project-name">Project Name</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box"> <img
+                        src="/resources/core/img/portfolio/4.jpg"
+                        th:src="@{/resources/core/img/portfolio/4.jpg}" class="img-responsive"
+                        alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">Category</div>
+                                <div class="project-name">Project Name</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box"> <img
+                        src="/resources/coreimg/portfolio/5.jpg"
+                        th:src="@{/resources/core/img/portfolio/5.jpg}" class="img-responsive"
+                        alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">Category</div>
+                                <div class="project-name">Project Name</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box"> <img
+                        src="/resources/core/img/portfolio/6.jpg"
+                        th:src="@{/resources/core/img/portfolio/6.jpg}" class="img-responsive"
+                        alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">Category</div>
+                                <div class="project-name">Project Name</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Free Download at Start Bootstrap!</h2>
+                <a href="#" class="btn btn-default btn-xl wow tada">Download Now!</a>
+            </div>
+        </div>
+    </aside>
+
+    <section id="contact">
+        <div th:include="footer :: copy"></div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="/resources/core/js/jquery.js" th:src="@{/resources/core/js/jquery.js}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/resources/core/js/bootstrap.min.js"
+        th:src="@{/resources/core/js/bootstrap.min.js}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/resources/core/js/jquery.easing.min.js"
+        th:src="@{/resources/core/js/jquery.easing.min.js}"></script>
+    <script src="/resources/core/js/jquery.fittext.js"
+        th:src="@{/resources/core/js/jquery.fittext.js}"></script>
+    <script src="/resources/core/js/wow.min.js" th:src="@{/resources/core/js/wow.min.js}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/resources/core/js/creative.js" th:src="@{/resources/core/js/creative.js}"></script>
+
+    <!-- Leaflet JavaScript -->
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<!--     <script src="/resources/core/js/myleaflet.js"></script> -->
+    <script>
+
+    //var json = require('./stops.json');
+
+var json = '[{"DescrizioneFermata":"Viale S. Dioguardi fron str. del Caffè","IdFermata":"03227101","PosizioneFermata":{"Latitudine":"41.0963","Longitudine":"16.8629"}},{"DescrizioneFermata":"Viale S. Dioguardi ang str. del Caffè","IdFermata":"03227001","PosizioneFermata":{"Latitudine":"41.0963","Longitudine":"16.8621"}},{"DescrizioneFermata":"Via Van Westerhouth ,18","IdFermata":"08546003","PosizioneFermata":{"Latitudine":"41.1352","Longitudine":"16.829"}},{"DescrizioneFermata":"via Dei Gladioli, nucleo Cinofili CC","IdFermata":"10181101","PosizioneFermata":{"Latitudine":"41.0981","Longitudine":"16.7715"}},{"DescrizioneFermata":"Via gen.Bellomo -Casa di Cura Torrebella","IdFermata":"03270102","PosizioneFermata":{"Latitudine":"41.1058","Longitudine":"16.8505"}},{"DescrizioneFermata":"via Appulo  ,2","IdFermata":"05018002","PosizioneFermata":{"Latitudine":"41.1041","Longitudine":"16.9003"}},{"DescrizioneFermata":"via Giulio Petroni  ang. Giov.XXIII","IdFermata":"03285009","PosizioneFermata":{"Latitudine":"41.1073","Longitudine":"16.8677"}},{"DescrizioneFermata":"Via Cascia,ang. Via Roccaporena","IdFermata":"04093002","PosizioneFermata":{"Latitudine":"41.0702","Longitudine":"16.8555"}},{"DescrizioneFermata":"via S. Angelo, 24 (Ceglie)","IdFermata":"04483101","PosizioneFermata":{"Latitudine":"41.0657","Longitudine":"16.8659"}},{"DescrizioneFermata":"Viale Lazio ,12","IdFermata":"02309001","PosizioneFermata":{"Latitudine":"41.1195","Longitudine":"16.7916"}},{"DescrizioneFermata":"Via Titolo, 20","IdFermata":"01506101","PosizioneFermata":{"Latitudine":"41.1596","Longitudine":"16.7628"}},{"DescrizioneFermata":"Via Oberdan di fronte al Civ 22/A","IdFermata":"05399102","PosizioneFermata":{"Latitudine":"41.1175","Longitudine":"16.8841"}},{"DescrizioneFermata":"via Archimede, ex Capolinea 2","IdFermata":"05021103","PosizioneFermata":{"Latitudine":"41.1035","Longitudine":"16.9034"}},{"DescrizioneFermata":"viale Lindemann di fronte ex dep. AMTAB","IdFermata":"02315101","PosizioneFermata":{"Latitudine":"41.1217","Longitudine":"16.8162"}},{"DescrizioneFermata":"Viale G. DAnnunzio (C.P.T. Centro Perm. Temp.)","IdFermata":"01143004","PosizioneFermata":{"Latitudine":"41.144","Longitudine":"16.7786"}},{"DescrizioneFermata":"Sottovia di Via Q.Sella","IdFermata":"03490001","PosizioneFermata":{"Latitudine":"41.1171","Longitudine":"16.8626"}},{"DescrizioneFermata":"via Dei Gerani ,angolo Delle Ortensie","IdFermata":"10183001","PosizioneFermata":{"Latitudine":"41.1098","Longitudine":"16.7741"}},{"DescrizioneFermata":"Via della lealtà cap","IdFermata":"01310C00","PosizioneFermata":{"Latitudine":"41.1487","Longitudine":"16.737"}},{"DescrizioneFermata":"Via Iqbal Masih fronte scuola","IdFermata":"01353101","PosizioneFermata":{"Latitudine":"41.1494","Longitudine":"16.7389"}},{"DescrizioneFermata":"via Delle Violette, TIM","IdFermata":"10213001","PosizioneFermata":{"Latitudine":"41.1049","Longitudine":"16.7671"}},{"DescrizioneFermata":"Via Alberotanza, 14","IdFermata":"06006101","PosizioneFermata":{"Latitudine":"41.0958","Longitudine":"16.8717"}},{"DescrizioneFermata":"Via Adriatico, ang. Lung. Starita","IdFermata":"08003102","PosizioneFermata":{"Latitudine":"41.1374","Longitudine":"16.8409"}},{"DescrizioneFermata":"Bari, Via Anastasio Ballestrero ","IdFermata":"07023101","PosizioneFermata":{"Latitudine":"41.1157","Longitudine":"16.8956"}},{"DescrizioneFermata":"Via Indipendenza - Staz. FFSS","IdFermata":"01292101","PosizioneFermata":{"Latitudine":"41.1513","Longitudine":"16.7671"}},{"DescrizioneFermata":"Via Catino 48(Q.re S.Pio- Case PT)","IdFermata":"01098101","PosizioneFermata":{"Latitudine":"41.151","Longitudine":"16.7391"}},{"DescrizioneFermata":"strada S. Giorgio, 4","IdFermata":"05477102","PosizioneFermata":{"Latitudine":"41.0933","Longitudine":"16.9617"}},{"DescrizioneFermata":"piazza G. Cesare ,Policlinico","IdFermata":"03283101","PosizioneFermata":{"Latitudine":"41.112","Longitudine":"16.8625"}},{"DescrizioneFermata":"via Ferorelli ,di fronte C.E.D.I.","IdFermata":"02255101","PosizioneFermata":{"Latitudine":"41.1102","Longitudine":"16.8076"}},{"DescrizioneFermata":"via G. Petroni di fronte Clinica S.Rita","IdFermata":"04285113","PosizioneFermata":{"Latitudine":"41.0888","Longitudine":"16.8656"}},{"DescrizioneFermata":"Corso Cavour, 209 Cap.","IdFermata":"09099C02","PosizioneFermata":{"Latitudine":"41.1193","Longitudine":"16.8727"}},{"DescrizioneFermata":"V.le delle Regioni di fronte Don. Milani","IdFermata":"02210103","PosizioneFermata":{"Latitudine":"41.1217","Longitudine":"16.7879"}},{"DescrizioneFermata":"Via della Resistenza, Superm. GS (Capolinea)","IdFermata":"06195C00","PosizioneFermata":{"Latitudine":"41.1054","Longitudine":"16.8751"}},{"DescrizioneFermata":"Via Palasciano 8","IdFermata":"05410001","PosizioneFermata":{"Latitudine":"41.1054","Longitudine":"16.9216"}},{"DescrizioneFermata":"Lung.C.Colombo,246","IdFermata":"01135003","PosizioneFermata":{"Latitudine":"41.1674","Longitudine":"16.744"}},{"DescrizioneFermata":"via Trisorio Liuzzi, fronte via Di Cillo","IdFermata":"04513006","PosizioneFermata":{"Latitudine":"41.0724","Longitudine":"16.8616"}},{"DescrizioneFermata":"C.so Della Carboneria, difronte civ. 53","IdFermata":"08192001","PosizioneFermata":{"Latitudine":"41.1251","Longitudine":"16.8488"}},{"DescrizioneFermata":"Via Spilotros, 8","IdFermata":"01494101","PosizioneFermata":{"Latitudine":"41.1551","Longitudine":"16.7733"}},{"DescrizioneFermata":"viale Pasteur ang. Martiri dAvola","IdFermata":"03417002","PosizioneFermata":{"Latitudine":"41.1122","Longitudine":"16.853"}},{"DescrizioneFermata":"via Vitt. Veneto, 67","IdFermata":"04550102","PosizioneFermata":{"Latitudine":"41.0612","Longitudine":"16.8666"}},{"DescrizioneFermata":"Viale Japigia, 88/B","IdFermata":"05297104","PosizioneFermata":{"Latitudine":"41.1148","Longitudine":"16.8939"}},{"DescrizioneFermata":"via Delle Magnolie ILCA","IdFermata":"10205002","PosizioneFermata":{"Latitudine":"41.1093","Longitudine":"16.7586"}},{"DescrizioneFermata":"via G. Petroni ,107","IdFermata":"03285110","PosizioneFermata":{"Latitudine":"41.0961","Longitudine":"16.8675"}},{"DescrizioneFermata":"via  Gentile , 53/a1","IdFermata":"05273003","PosizioneFermata":{"Latitudine":"41.108","Longitudine":"16.9115"}},{"DescrizioneFermata":"via  Omodeo, 67","IdFermata":"06402002","PosizioneFermata":{"Latitudine":"41.1071","Longitudine":"16.8844"}},{"DescrizioneFermata":"Viale  Pio XII, 48","IdFermata":"03411001","PosizioneFermata":{"Latitudine":"41.1028","Longitudine":"16.8594"}},{"DescrizioneFermata":"Via  Rocca ,Ecopoli","IdFermata":"05450001","PosizioneFermata":{"Latitudine":"41.1","Longitudine":"16.9037"}},{"DescrizioneFermata":"Str.prov.Carb.-Modugno-Stadio S.Nicola","IdFermata":"04462101","PosizioneFermata":{"Latitudine":"41.0872","Longitudine":"16.8399"}},{"DescrizioneFermata":"Via Brigata Regina fronte Scuola","IdFermata":"08039103","PosizioneFermata":{"Latitudine":"41.1236","Longitudine":"16.8518"}},{"DescrizioneFermata":"Via B. Regina (Scuola Elementare)","IdFermata":"08039003","PosizioneFermata":{"Latitudine":"41.1237","Longitudine":"16.8518"}},{"DescrizioneFermata":"Via B. Bari, 102/A","IdFermata":"08040101","PosizioneFermata":{"Latitudine":"41.1201","Longitudine":"16.8521"}},{"DescrizioneFermata":"Corso Alcide De Gasperi, 479","IdFermata":"04162103","PosizioneFermata":{"Latitudine":"41.0861","Longitudine":"16.869"}},{"DescrizioneFermata":"Str.Caposcardicchio-Osp.S.Paolo(Capolin)","IdFermata":"02072C00","PosizioneFermata":{"Latitudine":"41.1177","Longitudine":"16.781"}},{"DescrizioneFermata":"Via Pacifico Mazzoni ,ang. Candura","IdFermata":"02408001","PosizioneFermata":{"Latitudine":"41.126","Longitudine":"16.7996"}},{"DescrizioneFermata":"via Vaccarella ,Snoopy","IdFermata":"04540102","PosizioneFermata":{"Latitudine":"41.0716","Longitudine":"16.8636"}},{"DescrizioneFermata":"Via Quintino Sella ,225","IdFermata":"08441103","PosizioneFermata":{"Latitudine":"41.1192","Longitudine":"16.8647"}},{"DescrizioneFermata":"Lungomare Imp Augusto, Fortino","IdFermata":"09295103","PosizioneFermata":{"Latitudine":"41.129","Longitudine":"16.8729"}},{"DescrizioneFermata":"Lungomare Imp.Augusto,Piazza Ferrarese","IdFermata":"09295104","PosizioneFermata":{"Latitudine":"41.1271","Longitudine":"16.8725"}},{"DescrizioneFermata":"via  Colella, ang. via Gentile","IdFermata":"05105001","PosizioneFermata":{"Latitudine":"41.1085","Longitudine":"16.9094"}},{"DescrizioneFermata":"Piazza Federico II di Svevia","IdFermata":"09350101","PosizioneFermata":{"Latitudine":"41.1288","Longitudine":"16.8675"}},{"DescrizioneFermata":"Piazza Massari Ang Federico II di Svevia","IdFermata":"09351003","PosizioneFermata":{"Latitudine":"41.1273","Longitudine":"16.8659"}},{"DescrizioneFermata":"P.zza Massari, Prefettura","IdFermata":"09351C00","PosizioneFermata":{"Latitudine":"41.1259","Longitudine":"16.8666"}},{"DescrizioneFermata":"C.so V. Emanuele, Teatro Piccinni Cap.","IdFermata":"09556C00","PosizioneFermata":{"Latitudine":"41.1259","Longitudine":"16.8674"}},{"DescrizioneFermata":"P.zza Garibaldi, chiesa S. Francesco","IdFermata":"08267102","PosizioneFermata":{"Latitudine":"41.1255","Longitudine":"16.8608"}},{"DescrizioneFermata":"Via Bari, 35/F","IdFermata":"05027104","PosizioneFermata":{"Latitudine":"41.0863","Longitudine":"16.9923"}},{"DescrizioneFermata":"via De Laurentis ,19/21","IdFermata":"03168104","PosizioneFermata":{"Latitudine":"41.0949","Longitudine":"16.8643"}},{"DescrizioneFermata":"viale Europa ,ang.Granieri","IdFermata":"02240003","PosizioneFermata":{"Latitudine":"41.127","Longitudine":"16.7973"}},{"DescrizioneFermata":"viale Kennedy, 77","IdFermata":"03298102","PosizioneFermata":{"Latitudine":"41.101","Longitudine":"16.8654"}},{"DescrizioneFermata":"viaTris.Liuzzi,95/C fronte rist.Rosa Blu","IdFermata":"04513104","PosizioneFermata":{"Latitudine":"41.0661","Longitudine":"16.8623"}},{"DescrizioneFermata":"Via  DAvanzo ,  3","IdFermata":"05144001","PosizioneFermata":{"Latitudine":"41.1046","Longitudine":"16.9072"}},{"DescrizioneFermata":"via Oberdan ,di fronte Sup. De Sandi","IdFermata":"05399101","PosizioneFermata":{"Latitudine":"41.1171","Longitudine":"16.887"}},{"DescrizioneFermata":"Estr. Capruzzi 20/A","IdFermata":"07075001","PosizioneFermata":{"Latitudine":"41.1175","Longitudine":"16.8767"}},{"DescrizioneFermata":"Via delle Orchide-Zincomet (Capolinea)","IdFermata":"10208C00","PosizioneFermata":{"Latitudine":"41.101","Longitudine":"16.7843"}},{"DescrizioneFermata":"Via Scizze di fronte P.co Atlantide","IdFermata":"05489002","PosizioneFermata":{"Latitudine":"41.0899","Longitudine":"16.988"}},{"DescrizioneFermata":"Lung. C. Colombo ,di fronte QUI SI GODE","IdFermata":"01135101","PosizioneFermata":{"Latitudine":"41.164","Longitudine":"16.7488"}},{"DescrizioneFermata":"Via Complanare Est, 108","IdFermata":"05114104","PosizioneFermata":{"Latitudine":"41.0989","Longitudine":"16.9349"}},{"DescrizioneFermata":"Via Nicholas Green,54","IdFermata":"01387101","PosizioneFermata":{"Latitudine":"41.1569","Longitudine":"16.7416"}},{"DescrizioneFermata":"via Delle Ortensie, di fronte Pimespo","IdFermata":"10207102","PosizioneFermata":{"Latitudine":"41.109","Longitudine":"16.7737"}},{"DescrizioneFermata":"Via S. Angelo, 39","IdFermata":"04483001","PosizioneFermata":{"Latitudine":"41.0656","Longitudine":"16.866"}},{"DescrizioneFermata":"via Prov. Ceglie - Adelfia ,km 2","IdFermata":"04104101","PosizioneFermata":{"Latitudine":"41.0434","Longitudine":"16.8634"}},{"DescrizioneFermata":"Via Vaccarella ang. Trav. Vaccarella","IdFermata":"04540002","PosizioneFermata":{"Latitudine":"41.0711","Longitudine":"16.8637"}},{"DescrizioneFermata":"Via Delle Magnolie di fronte ILCA","IdFermata":"10205106","PosizioneFermata":{"Latitudine":"41.1093","Longitudine":"16.7587"}},{"DescrizioneFermata":"Via Delle Azalee fronte civ.1/3","IdFermata":"01201101","PosizioneFermata":{"Latitudine":"41.1588","Longitudine":"16.7384"}},{"DescrizioneFermata":"Corso V. Emanuele - Provvisoria","IdFermata":"09556C01","PosizioneFermata":{"Latitudine":"41.1259","Longitudine":"16.8674"}},{"DescrizioneFermata":"Via Dante Alighieri - Provvisoria","IdFermata":"09146101","PosizioneFermata":{"Latitudine":"41.1216","Longitudine":"16.8621"}},{"DescrizioneFermata":"Corso Vitt.Veneto ex parch. Multiservizi","IdFermata":"08561107","PosizioneFermata":{"Latitudine":"41.128","Longitudine":"16.855"}},{"DescrizioneFermata":"C.so Vitt.Veneto fronte ex parch.Multise","IdFermata":"08561007","PosizioneFermata":{"Latitudine":"41.128","Longitudine":"16.8551"}}]';
+//var t = '${stops}'
+var stops = JSON.parse(json);
+
+for(var i in stops)
+   stops[i].PosizioneFermata;
+
+
+
+  var map = new L.Map('map', {zoom: 12, minZoom:12, center: L.latLng(41.11714,16.87187) });	
+	map.addLayer(L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoiaWxpb24iLCJhIjoiY2locDE2aTgwMDAwN3V4a3FmeWpmdWFoMyJ9.L1VHoNApF6f6ayFyAeaW_w'
+        }));	
+	var markersLayer = new L.LayerGroup();
+	map.addLayer(markersLayer);
+
+
+	////////////populate map from stops
+	for(var i in stops) {
+    L.marker(L.latLng(stops[i].PosizioneFermata.Latitudine,stops[i].PosizioneFermata.Longitudine), {
+       title: stops[i].DescrizioneFermata}).addTo( markersLayer ).bindPopup("<b>"+stops[i].DescrizioneFermata+"</b>").openPopup();
+  }
+  
+
+var aray=[];
+for(var i in stops) {
+    aray.push(L.latLng(stops[i].PosizioneFermata.Latitudine,stops[i].PosizioneFermata.Longitudine));
+}
+// Add a new line to the map with no points.
+var polyline = L.polyline(aray,
+            {
+                color: 'red',
+                weight: 2,
+                opacity: .7,
+                lineJoin: 'round'
+            }).addTo(map);
+
+
+	//inizialize Leaflet List Markers
+	//var list = new L.Control.ListMarkers({
+  //    layer: markersLayer,
+  //    itemIcon: null
+  //  }
+  //);
+	
+	//list.on('item-mouseover', function(e) {
+	//	e.layer.setIcon(L.icon({
+	//		iconUrl: '../images/select-marker.png'
+	//	}))
+	//}).on('item-mouseout', function(e) {
+	//	e.layer.setIcon(L.icon({
+	//		iconUrl: L.Icon.Default.imagePath+'/marker-icon.png'
+	//	}))
+	//});
+	map.addControl( list );
+	
+    </script>
+</body>
+
+</html>

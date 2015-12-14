@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <stop id="1" stopDescription="lorem" idStop="123" />
+    <stop id="2" stopDescription="ipsum" idstop="234" />
+</dataset>
