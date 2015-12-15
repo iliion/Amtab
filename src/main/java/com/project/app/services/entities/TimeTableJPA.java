@@ -1,23 +1,19 @@
 package com.project.app.services.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 @Entity
-@Table(name = "line")
+@Table(name = "timetable")
 public class TimeTableJPA implements Serializable {
 
     /**
@@ -27,13 +23,14 @@ public class TimeTableJPA implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "id_timetable")
+    private Long idTimetable;
 
-    // @Column(name = "idBus")
-    // private int idBus;
-    // @Column(name = "idStop")
-    // private String idStop;
+    @Column(name = "idBus")
+    private int idBus;
+
+    @Column(name = "idStop")
+    private String idStop;
 
     @Column(name = "direction")
     private String direction;
@@ -44,15 +41,19 @@ public class TimeTableJPA implements Serializable {
     @Column(name = "progression")
     private int progression;
 
-    @OneToOne(mappedBy = "lineTimeTable")
-    private LineJPA line;
+    // @OneToOne(mappedBy = "lineTimeTable")
+    // private LineJPA line;
 
-    @OneToMany(mappedBy = "busTimetable")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private Collection<BusJPA> buses;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_line")
+    private LineJPA lineJPA;
 
-    @ManyToMany(mappedBy = "stopTimetables")
-    private Collection<StopJPA> stops;
+    // @OneToMany(mappedBy = "busTimetable")
+    // @LazyCollection(LazyCollectionOption.FALSE)
+    // private Collection<BusJPA> buses;
+    //
+    // @ManyToMany(mappedBy = "stopTimetables")
+    // private Collection<StopJPA> stops;
 
     public TimeTableJPA() {
     }
@@ -64,11 +65,27 @@ public class TimeTableJPA implements Serializable {
     }
 
     public Long getId() {
-        return id;
+        return idTimetable;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idTimetable) {
+        this.idTimetable = idTimetable;
+    }
+
+    public int getIdBus() {
+        return idBus;
+    }
+
+    public void setIdBus(int idBus) {
+        this.idBus = idBus;
+    }
+
+    public String getIdStop() {
+        return idStop;
+    }
+
+    public void setIdStop(String idStop) {
+        this.idStop = idStop;
     }
 
     public String getDirection() {
@@ -95,29 +112,37 @@ public class TimeTableJPA implements Serializable {
         this.progression = progression;
     }
 
-    public LineJPA getLine() {
-        return line;
+    public LineJPA getLineJPA() {
+        return lineJPA;
     }
 
-    public void setLine(LineJPA line) {
-        this.line = line;
+    public void setLineJPA(LineJPA lineJPA) {
+        this.lineJPA = lineJPA;
     }
 
-    public Collection<BusJPA> getBuses() {
-        return buses;
-    }
+    // public LineJPA getLine() {
+    // return line;
+    // }
+    //
+    // public void setLine(LineJPA line) {
+    // this.line = line;
+    // }
 
-    public void setBuses(Collection<BusJPA> buses) {
-        this.buses = buses;
-    }
-
-    public Collection<StopJPA> getStops() {
-        return stops;
-    }
-
-    public void setStops(Collection<StopJPA> stops) {
-        this.stops = stops;
-    }
+    // public Collection<BusJPA> getBuses() {
+    // return buses;
+    // }
+    //
+    // public void setBuses(Collection<BusJPA> buses) {
+    // this.buses = buses;
+    // }
+    //
+    // public Collection<StopJPA> getStops() {
+    // return stops;
+    // }
+    //
+    // public void setStops(Collection<StopJPA> stops) {
+    // this.stops = stops;
+    // }
 
     /** Helper Methods **/
 

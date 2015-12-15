@@ -1,46 +1,35 @@
 package com.project.app.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
+import com.project.app.model.DailyBusService;
 import com.project.app.model.StopPosition;
 import com.project.app.model.objects.Line;
 import com.project.app.services.PopulateDbService;
 import com.project.app.services.entities.LineJPA;
 import com.project.app.services.entities.PositionJPA;
 import com.project.app.services.entities.StopJPA;
-import com.project.app.services.repositories.BusRepository;
+import com.project.app.services.entities.TimeTableJPA;
 import com.project.app.services.repositories.LineRepository;
-import com.project.app.services.repositories.PositionRepository;
 import com.project.app.services.repositories.StopRepository;
 import com.project.app.services.repositories.TimeTableRepository;
 
-// @Component
+@Component
 public class ApplicationListenerBean implements ApplicationListener<ContextRefreshedEvent> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationListenerBean.class);
 
     @Autowired
     PopulateDbService service;
-
-    @Autowired
-    StopRepository stopRepo;
-
-    @Autowired
-    LineRepository lineRepo;
-
-    @Autowired
-    PositionRepository positionRepo;
-
-    @Autowired
-    TimeTableRepository timeTableRepo;
-
-    @Autowired
-    BusRepository busRepo;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -51,8 +40,72 @@ public class ApplicationListenerBean implements ApplicationListener<ContextRefre
 
     private void populateDatabase(ApplicationContext applicationContext) {
 
-        // StopRepository stopRepo = applicationContext.getBean(StopRepository.class);
+        StopRepository stopRepo = applicationContext.getBean(StopRepository.class);
+        LineRepository lineRepo = applicationContext.getBean(LineRepository.class);
+        TimeTableRepository timetableRepo = applicationContext.getBean(TimeTableRepository.class);
+
         StopPosition[] stopPositionArray = service.getPositionOfBusStops();
+        Line[] lines = service.getLines();
+
+        // ------------------------
+
+        for (int i = 0; i < lines.length; i++) {
+            DailyBusService[] dailyService = service.getDailyService(lines[i].getIdLinea());
+
+            LineJPA lineJPA = new LineJPA();
+            List<TimeTableJPA> timetableJPAList = new ArrayList<TimeTableJPA>();
+
+            LOGGER.info("LINE NUMBER: " + lines[i].getIdLinea());
+            lineJPA.setIdLine(lines[i].getIdLinea());
+            lineJPA.setLineDescription(lines[i].getDescrizioneLinea());
+
+            for (int j = 0; j < dailyService.length; j++) {
+
+                LOGGER.info("Direzione: " + dailyService[j].getDirezione());
+                LOGGER.info("IdCorsa: " + dailyService[j].getIdCorsa());
+                LOGGER.info("IdFermata: " + dailyService[j].getIdFermata());
+                LOGGER.info("Orario: " + dailyService[j].getOrario());
+                LOGGER.info("Progressivo: " + dailyService[j].getProgressivo());
+
+                TimeTableJPA timetableJPA = new TimeTableJPA();
+                timetableJPA.setDirection(dailyService[j].getDirezione());
+                timetableJPA.setOrario(dailyService[j].getOrario());
+                timetableJPA.setProgression(dailyService[j].getProgressivo());
+                timetableJPA.setIdBus(dailyService[j].getIdCorsa());
+                timetableJPA.setIdStop(dailyService[j].getIdFermata());
+                // Set Parent JPA (LineJPA)
+                timetableJPA.setLineJPA(lineJPA);
+                timetableJPAList.add(timetableJPA);
+
+                // timetableRepo.save(timetableJPA);
+            }
+
+            lineJPA.setTimeTables(timetableJPAList);
+
+            lineRepo.save(lineJPA);
+        }
+
+        timetableRepo.flush();
+        lineRepo.flush();
+
+        // ------------------------
+
+        // LOGGER.info("Number of Lines: " + lines.length);
+        // for (int i = 0; i < lines.length; i++) {
+        // LineJPA lineJPA = new LineJPA();
+        //
+        // LOGGER.info("IdLinea: " + lines[i].getIdLinea());
+        // LOGGER.info("DescrizioneLinea: " + lines[i].getDescrizioneLinea());
+        //
+        // lineJPA.setIdLine(lines[i].getIdLinea());
+        // lineJPA.setLineDescription(lines[i].getDescrizioneLinea());
+        //
+        // lineRepo.save(lineJPA);
+        // }
+        // lineRepo.flush();
+
+        // ------------------------
+
         LOGGER.info("Number of Bus Stops: " + stopPositionArray.length);
         for (int i = 0; i < stopPositionArray.length; i++) {
             StopJPA stopJPA = new StopJPA();
@@ -72,22 +125,6 @@ public class ApplicationListenerBean implements ApplicationListener<ContextRefre
             stopRepo.save(stopJPA);
         }
         stopRepo.flush();
-
-        // LineRepository lineRepo = applicationContext.getBean(LineRepository.class);
-        Line[] lines = service.getLines();
-        LOGGER.info("Number of Lines: " + lines.length);
-        for (int i = 0; i < lines.length; i++) {
-            LineJPA lineJPA = new LineJPA();
-
-            LOGGER.info("IdLinea: " + lines[i].getIdLinea());
-            LOGGER.info("DescrizioneLinea: " + lines[i].getDescrizioneLinea());
-
-            lineJPA.setIdLine(lines[i].getIdLinea());
-            lineJPA.setLineDescription(lines[i].getDescrizioneLinea());
-
-            lineRepo.save(lineJPA);
-        }
-        lineRepo.flush();
 
     }
 

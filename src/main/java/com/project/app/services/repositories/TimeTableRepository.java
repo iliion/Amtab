@@ -16,7 +16,7 @@ import com.project.app.services.entities.TimeTableJPA;
 @RepositoryRestResource(collectionResourceRel = "timetable", path = "timetable")
 public interface TimeTableRepository extends BaseRepository<TimeTableJPA, Long> {
 
-    TimeTableJPA findById(@Param("id") Long id);
+    TimeTableJPA findByIdTimetable(@Param("idTimetable") Long idTimetable);
 
     @Override
     void delete(TimeTableJPA deleted);

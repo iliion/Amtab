@@ -8,13 +8,17 @@ import com.project.app.model.objects.Bus;
 public class DailyBusService extends Bus {
 
     // ServizioGiornaliero/{idLinea}/{*idFermata}
+    // [
     // {
     // "Direzione": "A",
     // "IdCorsa": 121804,
     // "IdFermata": "01135C00",
     // "Orario": "/Date(1448360400000+0100)/",
     // "Progressivo": 42
-    // }
+    // },
+    // {..},
+    // {..}
+    // ]
 
     @JsonProperty("Direzione")
     private String direzione;
