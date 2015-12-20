@@ -21,7 +21,7 @@ import com.project.app.services.repositories.PositionRepository;
  * @author Ilias Ioannou
  */
 @Service
-public class PositionService implements GenericService<PositionJPA> {
+public class PositionService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PositionService.class);
 
@@ -38,21 +38,21 @@ public class PositionService implements GenericService<PositionJPA> {
     }
 
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public List<PositionJPA> findAll() {
         List<PositionJPA> positionEntries = positionRepository.findAll();
         return positionEntries;
     }
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public PositionJPA findById(Long id) {
         PositionJPA positionEntry = findPositionEntryById(id);
         return positionEntry;
     }
 
-    @Override
+//    @Override
     @Transactional
     public PositionJPA update(PositionJPA updatedPositionEntry) {
         PositionJPA updated = findPositionEntryById(updatedPositionEntry.getId());

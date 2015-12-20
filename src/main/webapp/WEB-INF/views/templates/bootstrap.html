@@ -111,12 +111,14 @@
                             <th class="text-center">Numero</th>
                             <th class="text-center">Linea</th>
                             <th class="text-center">Mappa</th>
+                            <th class="text-center">Test</th>
                         </tr>
                         <!-- On cells (`td` or `th`) -->
                         <tr th:each="item : ${list}">
                             <td class="success" th:text="${{item.idLine}}"></td>
                             <td th:text="${{item.lineDescription}}"></td>
                             <td><a th:href="@{/rest/line/__${item.idLine}__}">Vai</a></td>
+                            <td><a th:href="@{/__${item.idLine}__}">Vai</a></td>
                         </tr>
                     </table>
                 </div>

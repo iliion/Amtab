@@ -19,7 +19,7 @@ import com.project.app.services.repositories.TimeTableRepository;
  * @author Ilias Ioannou
  */
 @Service
-public class TimetableService implements GenericService<TimeTableJPA> {
+public class TimetableService {
 
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(TimetableService.class);
@@ -54,21 +54,21 @@ public class TimetableService implements GenericService<TimeTableJPA> {
 		return timetableLineEntry;
 	}
 	
-	@Override
+//	@Override
 	@Transactional(readOnly = true)
 	public List<TimeTableJPA> findAll() {
 		List<TimeTableJPA> timeTableEntries = timeTableRepository.findAll();
 		return timeTableEntries;
 	}
 
-	@Override
+//	@Override
 	@Transactional(readOnly = true)
 	public TimeTableJPA findById(Long id) {
 		TimeTableJPA timeTableEntry = findTimetableEntryById(id);
 		return timeTableEntry;
 	}
 
-	@Override
+//	@Override
 	@Transactional
 	public TimeTableJPA update(TimeTableJPA updatedTimetableEntry) {
 		TimeTableJPA updated = findTimetableEntryById(updatedTimetableEntry

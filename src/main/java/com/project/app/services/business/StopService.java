@@ -21,7 +21,7 @@ import com.project.app.services.repositories.StopRepository;
  * @author Ilias Ioannou
  */
 @Service
-public class StopService implements GenericService<StopJPA> {
+public class StopService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StopService.class);
 
@@ -38,21 +38,21 @@ public class StopService implements GenericService<StopJPA> {
     }
 
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public List<StopJPA> findAll() {
         List<StopJPA> stopEntries = stopRepository.findAll();
         return stopEntries;
     }
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public StopJPA findById(Long id) {
         StopJPA stopEntry = findStopEntryById(id);
         return stopEntry;
     }
 
-    @Override
+//    @Override
     @Transactional
     public StopJPA update(StopJPA updatedStopEntry) {
         StopJPA updated = findStopEntryById(updatedStopEntry.getId());

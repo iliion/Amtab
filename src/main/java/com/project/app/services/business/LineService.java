@@ -21,7 +21,7 @@ import com.project.app.services.repositories.LineRepository;
  * @author Ilias Ioannou
  */
 @Service
-public class LineService implements GenericService<LineJPA> {
+public class LineService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LineService.class);
 
@@ -38,21 +38,21 @@ public class LineService implements GenericService<LineJPA> {
     }
 
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public List<LineJPA> findAll() {
         List<LineJPA> lineEntries = lineRepository.findAll();
         return lineEntries;
     }
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public LineJPA findById(Long id) {
         LineJPA lineEntry = findLineEntryById(id);
         return lineEntry;
     }
 
-    @Override
+//    @Override
     @Transactional
     public LineJPA update(LineJPA updatedLineEntry) {
         LineJPA updated = findLineEntryById(updatedLineEntry.getId());

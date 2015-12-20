@@ -3,8 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <body>
-
-    <div class="container" th:fragment="fragment">
+<!-- 
+String idLine;
+int idBus;
+String idStop;
+String direction;
+String orario;
+int progression; -->
+    <div class="container" th:fragment=fragment>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Fucking Fragment!!</h2>
@@ -16,15 +22,21 @@
                     <table class="table table-bordered">
                         <!-- On rows -->
                         <tr class="active">
-                            <th class="text-center">Numero</th>
                             <th class="text-center">Linea</th>
-                            <th class="text-center">Mappa</th>
+                            <th class="text-center">Corsa</th>
+                            <th class="text-center">Fermata</th>
+                            <th class="text-center">Direzione</th>
+                            <th class="text-center">Orario</th>
+                            <th class="text-center">Progressivo</th>
                         </tr>
                         <!-- On cells (`td` or `th`) -->
-                        <tr th:each="item : ${list}">
+                        <tr th:each="item : ${tts}">
                             <td class="success" th:text="${{item.idLine}}"></td>
-                            <td th:text="${{item.lineDescription}}"></td>
-                            <td><a th:href="@{/rest/line/__${item.idLine}__}">Vai</a></td>
+                            <td th:text="${{item.idBus}}"></td>
+                            <td th:text="${{item.idStop}}"></td>
+                            <td th:text="${{item.direction}}"></td>
+                            <td th:text="${{item.orario}}"></td>
+                            <td th:text="${{item.progression}}"></td>
                         </tr>
                     </table>
                 </div>

@@ -21,7 +21,7 @@ import com.project.app.services.repositories.BusRepository;
  * @author Ilias Ioannou
  */
 @Service
-public class BusService implements GenericService<BusJPA> {
+public class BusService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BusService.class);
 
@@ -38,21 +38,21 @@ public class BusService implements GenericService<BusJPA> {
     }
 
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public List<BusJPA> findAll() {
         List<BusJPA> busEntries = busRepository.findAll();
         return busEntries;
     }
 
-    @Override
+//    @Override
     @Transactional(readOnly = true)
     public BusJPA findById(Long id) {
         BusJPA busEntry = findBusEntryById(id);
         return busEntry;
     }
 
-    @Override
+//    @Override
     @Transactional
     public BusJPA update(BusJPA updatedBusEntry) {
         BusJPA updated = findBusEntryById(updatedBusEntry.getId());
