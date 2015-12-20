@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<link th:href="@{/resources/core/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/resources/core/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
 
 <head>
 <title>AMTAB SERVICE</title>
@@ -11,81 +13,28 @@
 <body>
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">AMTAB PROJECT</a>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">AMTAB PROJECT</a>
+			</div>
+		</div>
+	</nav>
 
 
-    <div class="jumbotron">
-        <div class="container">
-
-            <div class="stopslist">
-                <h2>ATTEMPT 1</h2>
-                <h2>List of Stops</h2>
-
-                <div>
-                    <h1>Result</h1>
-                    <ul>
-                        <th:block th:object="${stopslist}">
-                            <li th:each="item : ${stopslist}" th:text="${item}">Item description
-                                here...</li>
-                        </th:block>
-                    </ul>
-                </div>
-                <h2>ATTEMPT 2</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th th:text="#{stopslist.idStop}">Fermata</th>
-                            <th th:text="#{stopslist.stopDescription}">Descrizione</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="sb : ${stopslist}">
-                            <td th:text="${{sb.idStop}}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2>ATTEMPT 3</h2>
-                <table>
-                    <tr>
-                        <th>Fermata</th>
-                        <th>Descrizione</th>
-                    </tr>
-                    <tr th:each="stop,iterationStatus  : ${stopslist}">
-                        <td th:text="${iterationStatus.count}"></td>
-                        <td th:text="${stop.idStop}"></td>
-                        <td th:text="${stop.stopDescription}"></td>
-                    </tr>
-                </table>
+	<div class="jumbotron">
+		<div class="container"></div>
+		<p>
+			<a class="btn btn-primary btn-lg" href="thyme.html"
+				th:href="@{/thyme.html}" role="button">Learn more</a>
+		</p>
+	</div>
 
 
 
-
-
-            </div>
-
-
-
-
-
-
-            <p>
-                <a class="btn btn-primary btn-lg" href="thyme.html" th:href="@{/thyme.html}"
-                    role="button">Learn more</a>
-            </p>
-        </div>
-    </div>
-
-
-
-    <script th:src="@{/resources/core/js/bootstrap.min.js}"></script>
-    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
+	<script th:src="@{/resources/core/js/bootstrap.min.js}"></script>
+	<script
+		th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
 
 
 </body>

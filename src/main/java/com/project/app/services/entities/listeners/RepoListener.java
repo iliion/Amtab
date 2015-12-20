@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.app.config.ApplicationContextProvider;
+import com.project.app.databasebusiness.PopulateDbService;
 import com.project.app.model.StopPosition;
-import com.project.app.services.PopulateDbService;
 import com.project.app.services.entities.StopJPA;
 
 @Service

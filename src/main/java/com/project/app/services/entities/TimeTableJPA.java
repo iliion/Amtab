@@ -1,6 +1,7 @@
 package com.project.app.services.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -26,6 +28,9 @@ public class TimeTableJPA implements Serializable {
     @Column(name = "id_timetable")
     private Long idTimetable;
 
+    @Column(name = "idLine")
+    private String idLine;
+
     @Column(name = "idBus")
     private int idBus;
 
@@ -41,9 +46,6 @@ public class TimeTableJPA implements Serializable {
     @Column(name = "progression")
     private int progression;
 
-    // @OneToOne(mappedBy = "lineTimeTable")
-    // private LineJPA line;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_line")
     private LineJPA lineJPA;
@@ -51,9 +53,9 @@ public class TimeTableJPA implements Serializable {
     // @OneToMany(mappedBy = "busTimetable")
     // @LazyCollection(LazyCollectionOption.FALSE)
     // private Collection<BusJPA> buses;
-    //
-    // @ManyToMany(mappedBy = "stopTimetables")
-    // private Collection<StopJPA> stops;
+
+     @ManyToMany(mappedBy = "stopTimetables")
+     private Collection<StopJPA> stops;
 
     public TimeTableJPA() {
     }
@@ -72,7 +74,15 @@ public class TimeTableJPA implements Serializable {
         this.idTimetable = idTimetable;
     }
 
-    public int getIdBus() {
+    public String getIdLine() {
+		return idLine;
+	}
+
+	public void setIdLine(String idLine) {
+		this.idLine = idLine;
+	}
+
+	public int getIdBus() {
         return idBus;
     }
 
@@ -136,13 +146,13 @@ public class TimeTableJPA implements Serializable {
     // this.buses = buses;
     // }
     //
-    // public Collection<StopJPA> getStops() {
-    // return stops;
-    // }
-    //
-    // public void setStops(Collection<StopJPA> stops) {
-    // this.stops = stops;
-    // }
+     public Collection<StopJPA> getStops() {
+     return stops;
+     }
+    
+     public void setStops(Collection<StopJPA> stops) {
+     this.stops = stops;
+     }
 
     /** Helper Methods **/
 

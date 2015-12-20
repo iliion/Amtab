@@ -1,8 +1,8 @@
-package com.project.app.services.transactions;
+package com.project.app.services.business.dtoservice;
 
 import java.util.List;
 
-public interface GenericRepoService<T> {
+public interface GenericService<T> {
 
     /** From JPAs to DTOs **/
 

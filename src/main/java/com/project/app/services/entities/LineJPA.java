@@ -35,10 +35,6 @@ public class LineJPA implements Serializable {
     @Column(name = "Line_Description")
     private String lineDescription;
 
-    // @OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-    // @JoinColumn(name = "id_timetable")
-    // private TimeTableJPA lineTimeTable;
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "lineJPA")
     private Collection<TimeTableJPA> timeTables;
 
@@ -92,14 +88,6 @@ public class LineJPA implements Serializable {
     public void setBusJPA(Collection<BusJPA> busJPA) {
         this.busJPA = busJPA;
     }
-
-    // public TimeTableJPA getLineTimeTable() {
-    // return lineTimeTable;
-    // }
-    //
-    // public void setLineTimeTable(TimeTableJPA lineTimeTable) {
-    // this.lineTimeTable = lineTimeTable;
-    // }
 
     /** Helper Methods **/
 

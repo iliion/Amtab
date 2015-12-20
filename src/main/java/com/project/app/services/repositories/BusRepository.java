@@ -26,13 +26,10 @@ public interface BusRepository extends BaseRepository<BusJPA, Long> {
     @Override
     List<BusJPA> findAll();
 
-    // Optional<StopJPA> findOne(Long id);
     @Override
     BusJPA findOne(Long id);
 
     @Override
     BusJPA save(BusJPA persisted);
-
-    void flush();
 
 }

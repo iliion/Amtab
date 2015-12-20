@@ -41,32 +41,6 @@ public class AmtabController implements IController {
 
     final private String baseUrl = "http://bari.opendata.planetek.it/OrariBus/v2.1/OpenDataService.svc/REST";
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index() {
-        List<StopJPA> stops = stopRepo.findAll();
-
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index");
-        model.addObject("stopslist", stops);
-
-        logger.info("VIEW NAME: " + model.getViewName() + stops.get(1));
-
-        return model;
-    }
-
-    @RequestMapping(value = "/line/{idLine}", method = RequestMethod.GET)
-    public @ResponseBody ModelAndView currentStatus(@PathVariable("idLine") String idLine) {
-        String lineUrl = baseUrl + "/MezziLinea/" + idLine;
-        RestTemplate restTemplate = new RestTemplate();
-        Status[] status = restTemplate.getForObject(lineUrl, Status[].class);
-
-        ModelAndView model = new ModelAndView();
-        model.setViewName("bootstrap");
-        model.addObject("array", status);
-
-        return model;
-    }
-
     /**
      * REST ENDPOINTS
      *

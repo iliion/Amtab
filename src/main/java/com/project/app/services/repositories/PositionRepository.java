@@ -31,6 +31,5 @@ public interface PositionRepository extends BaseRepository<PositionJPA, Long> {
     @Override
     PositionJPA save(PositionJPA persisted);
 
-    void flush();
 
 }

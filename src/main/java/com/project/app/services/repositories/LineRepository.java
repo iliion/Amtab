@@ -33,10 +33,5 @@ public interface LineRepository extends BaseRepository<LineJPA, Long> {
     @Override
     LineJPA save(LineJPA persisted);
 
-    void flush();
-
-    // @Query("Select t FROM Stop t WHERE LOWER(t.stopDescription) LIKE LOWER(CONCAT('%', :searchTerm, '%')) "
-    // + "OR LOWER(t.idStop) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
-    // public List<StopJPA> search(@Param("searchTerm") String searchTerm);
 
 }

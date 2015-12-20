@@ -18,6 +18,12 @@ public interface TimeTableRepository extends BaseRepository<TimeTableJPA, Long> 
 
     TimeTableJPA findByIdTimetable(@Param("idTimetable") Long idTimetable);
 
+    List<TimeTableJPA> findByIdLine(@Param("IdLine") String idLine);
+    
+    List<TimeTableJPA> findByIdStop(@Param("IdStop") String idStop);
+    
+    List<TimeTableJPA> findByIdBus(@Param("IdBus") String idBus);
+    
     @Override
     void delete(TimeTableJPA deleted);
 
@@ -29,7 +35,5 @@ public interface TimeTableRepository extends BaseRepository<TimeTableJPA, Long> 
 
     @Override
     TimeTableJPA save(TimeTableJPA persisted);
-
-    void flush();
 
 }
